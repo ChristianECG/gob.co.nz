@@ -1,0 +1,130 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout
+  title="Cómo contribuir"
+  description="Criterios editoriales y proceso para agregar entradas al registro."
+>
+  <article>
+    <div class="mb-8">
+      <div class="text-xs uppercase tracking-wide mb-3" style="color: var(--color-muted);">
+        Criterios editoriales
+      </div>
+      <h1 class="text-xl font-bold mb-1" style="color: var(--color-ink);">
+        Cómo contribuir
+      </h1>
+      <div class="mb-8" style="border-bottom: 1px solid var(--color-rule); padding-bottom: 1rem;"></div>
+    </div>
+
+    <div class="space-y-10 text-sm leading-relaxed" style="max-width: 40rem;">
+
+      <section>
+        <h2 class="text-xs uppercase tracking-wide mb-4 font-bold" style="color: var(--color-muted);">Qué es una errata válida</h2>
+        <p style="color: var(--color-ink);" class="mb-3">Una entrada es válida cuando cumple las tres condiciones:</p>
+        <ol class="space-y-2 pl-4" style="color: var(--color-ink);">
+          <li><strong>La declaración original es atribuible</strong> — tiene origen, autor o institución identificable, y año aproximado.</li>
+          <li><strong>La corrección refleja consenso documentado</strong> — no es una opinión del sitio, es lo que la industria acepta actualmente. Si el debate sigue abierto, la entrada no está lista.</li>
+          <li><strong>La causa es factual</strong> — explica por qué ocurrió el cambio sin sarcasmo ni juicio de valor.</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2 class="text-xs uppercase tracking-wide mb-4 font-bold" style="color: var(--color-muted);">Qué NO es una errata válida</h2>
+        <ul class="space-y-1 pl-4" style="color: var(--color-ink);">
+          <li>Una opinión personal sobre una tecnología o práctica</li>
+          <li>Un debate abierto donde no hay corrección establecida</li>
+          <li>Una crítica disfrazada de corrección</li>
+          <li>Algo que "todo el mundo sabe" pero nadie documentó</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="text-xs uppercase tracking-wide mb-4 font-bold" style="color: var(--color-muted);">Cómo escribir cada campo</h2>
+        <div class="space-y-6">
+          <div>
+            <p class="font-bold mb-1" style="color: var(--color-ink);"><code class="text-xs" style="background: var(--color-rule); padding: 0.1rem 0.3rem;">declaration</code></p>
+            <p style="color: var(--color-ink);">Cita directa o paráfrasis cercana. Siempre con atribución. Si no puedes citar la fuente, no la publiques.</p>
+          </div>
+          <div>
+            <p class="font-bold mb-1" style="color: var(--color-ink);"><code class="text-xs" style="background: var(--color-rule); padding: 0.1rem 0.3rem;">correction</code></p>
+            <p style="color: var(--color-ink);">Estado actual del consenso. Sin "pero", sin "sin embargo", sin matices editoriales. Solo lo que la industria dice ahora.</p>
+          </div>
+          <div>
+            <p class="font-bold mb-1" style="color: var(--color-ink);"><code class="text-xs" style="background: var(--color-rule); padding: 0.1rem 0.3rem;">cause</code></p>
+            <p style="color: var(--color-ink);">Por qué cambió. Factual, sin ironía. El lector puede sacar sus propias conclusiones.</p>
+          </div>
+          <div>
+            <p class="font-bold mb-1" style="color: var(--color-ink);"><code class="text-xs" style="background: var(--color-rule); padding: 0.1rem 0.3rem;">status_since</code></p>
+            <p style="color: var(--color-ink);">El año en que la corrección se volvió posición dominante. Aproximado está bien.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-xs uppercase tracking-wide mb-4 font-bold" style="color: var(--color-muted);">Tipos de entrada</h2>
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr class="text-xs uppercase tracking-wide" style="color: var(--color-muted); border-bottom: 1px solid var(--color-rule);">
+              <th class="text-left py-2 pr-6 font-normal">Tipo</th>
+              <th class="text-left py-2 font-normal">Cuándo usarlo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid var(--color-rule);">
+              <td class="py-3 pr-6"><a href="/tipo/posicion-revisada" style="color: var(--color-posicion); text-decoration: none;" class="hover:underline">posicion-revisada</a></td>
+              <td class="py-3" style="color: var(--color-ink);">La industria decía X, ahora dice Y. Hay una corrección clara.</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--color-rule);">
+              <td class="py-3 pr-6"><a href="/tipo/promesa-incumplida" style="color: var(--color-promesa); text-decoration: none;" class="hover:underline">promesa-incumplida</a></td>
+              <td class="py-3" style="color: var(--color-ink);">Alguien prometió que X ocurriría. No ocurrió.</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--color-rule);">
+              <td class="py-3 pr-6"><a href="/tipo/prediccion-fallida" style="color: var(--color-prediccion); text-decoration: none;" class="hover:underline">prediccion-fallida</a></td>
+              <td class="py-3" style="color: var(--color-ink);">Se pronosticó X. Pasó lo contrario o nada.</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--color-rule);">
+              <td class="py-3 pr-6"><a href="/tipo/consenso-disuelto" style="color: var(--color-consenso); text-decoration: none;" class="hover:underline">consenso-disuelto</a></td>
+              <td class="py-3" style="color: var(--color-ink);">Todos acordaban X. Ya no hay acuerdo.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2 class="text-xs uppercase tracking-wide mb-4 font-bold" style="color: var(--color-muted);">Tono</h2>
+        <p style="color: var(--color-ink);">El sitio no tiene voz. No hay "nosotros", no hay "creemos", no hay humor explícito. El humor, si existe, emerge del contraste entre la solemnidad del formato y lo que dice el contenido. No se escribe para ser gracioso — se escribe para ser preciso.</p>
+      </section>
+
+      <section>
+        <h2 class="text-xs uppercase tracking-wide mb-4 font-bold" style="color: var(--color-muted);">Proceso</h2>
+        <ol class="space-y-2 pl-4" style="color: var(--color-ink);">
+          <li>Crear <code class="text-xs" style="background: var(--color-rule); padding: 0.1rem 0.3rem;">/src/content/erratas/nombre-en-kebab-case.md</code></li>
+          <li>Completar todos los campos requeridos</li>
+          <li>Verificar que al menos una fuente esté citada</li>
+          <li>Abrir un pull request en el repositorio público</li>
+        </ol>
+        <div class="mt-4">
+          <a
+            href="https://github.com/ChristianECG/gob.co.nz"
+            target="_blank"
+            rel="noopener noreferrer"
+            style="font-size: 0.75rem; color: var(--color-muted); text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; border: 1px solid var(--color-rule); padding: 0.3rem 0.7rem;"
+            class="hover:border-current hover:text-[var(--color-ink)] transition-colors"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+            Abrir pull request
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </article>
+
+  <div class="mt-12 pt-6" style="border-top: 1px solid var(--color-rule);">
+    <a href="/" class="text-xs hover:underline" style="color: var(--color-muted); text-decoration: none;">
+      ← Volver al registro
+    </a>
+  </div>
+</Layout>
