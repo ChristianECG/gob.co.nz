@@ -1,0 +1,76 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TypeBadge from '../components/TypeBadge.astro';
+import { getCollection } from 'astro:content';
+
+const erratas = await getCollection('erratas');
+const sorted = erratas.sort((a, b) => b.data.status_since - a.data.status_since);
+---
+<Layout>
+  <div class="mb-10">
+    <h1 class="text-lg font-bold mb-1" style="color: var(--color-ink);">
+      Fe de erratas
+    </h1>
+    <p class="text-sm" style="color: var(--color-muted);">
+      Registro de posiciones revisadas, promesas incumplidas, predicciones fallidas y consensos disueltos en la industria tecnológica.
+    </p>
+  </div>
+
+  <!-- Search -->
+  <div id="search" class="mb-8"></div>
+  <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      // @ts-ignore
+      new PagefindUI({ element: '#search', showSubResults: false });
+    });
+  </script>
+  <script src="/pagefind/pagefind-ui.js" is:inline></script>
+
+  <!-- Filter bar -->
+  <div class="flex gap-3 flex-wrap mb-6 text-xs" style="color: var(--color-muted);">
+    <a href="/" class="hover:underline font-bold" style="color: var(--color-ink);">Todas</a>
+    <a href="/tipo/posicion-revisada" class="hover:underline" style="color: var(--color-posicion);">Posición revisada</a>
+    <a href="/tipo/promesa-incumplida" class="hover:underline" style="color: var(--color-promesa);">Promesa incumplida</a>
+    <a href="/tipo/prediccion-fallida" class="hover:underline" style="color: var(--color-prediccion);">Predicción fallida</a>
+    <a href="/tipo/consenso-disuelto" class="hover:underline" style="color: var(--color-consenso);">Consenso disuelto</a>
+  </div>
+
+  <!-- Table -->
+  <div class="overflow-x-auto">
+    <table class="w-full text-sm border-collapse">
+      <thead>
+        <tr class="text-xs uppercase tracking-wide" style="color: var(--color-muted); border-bottom: 1px solid var(--color-rule);">
+          <th class="text-left py-2 pr-4 font-normal">Desde</th>
+          <th class="text-left py-2 pr-4 font-normal">Tipo</th>
+          <th class="text-left py-2 font-normal">Entrada</th>
+        </tr>
+      </thead>
+      <tbody>
+        {sorted.map((entry) => (
+          <tr class="group" style="border-bottom: 1px solid var(--color-rule);">
+            <td class="py-3 pr-4 tabular-nums" style="color: var(--color-muted); vertical-align: top;">
+              {entry.data.status_since}
+            </td>
+            <td class="py-3 pr-4" style="vertical-align: top;">
+              <TypeBadge type={entry.data.type} />
+            </td>
+            <td class="py-3" style="vertical-align: top;">
+              <a
+                href={`/errata/${entry.data.slug}`}
+                class="font-bold hover:underline"
+                style="color: var(--color-ink); text-decoration: none;"
+              >
+                {entry.data.title}
+              </a>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <p class="mt-6 text-xs" style="color: var(--color-muted);">
+    {sorted.length} {sorted.length === 1 ? 'entrada' : 'entradas'} en el registro.
+  </p>
+</Layout>

@@ -1,0 +1,80 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import TypeBadge from '../../components/TypeBadge.astro';
+import { getCollection } from 'astro:content';
+
+type ErataType = 'posicion-revisada' | 'promesa-incumplida' | 'prediccion-fallida' | 'consenso-disuelto';
+
+const types: ErataType[] = ['posicion-revisada', 'promesa-incumplida', 'prediccion-fallida', 'consenso-disuelto'];
+
+export async function getStaticPaths() {
+  const erratas = await getCollection('erratas');
+  const types: ErataType[] = ['posicion-revisada', 'promesa-incumplida', 'prediccion-fallida', 'consenso-disuelto'];
+
+  return types.map((type) => ({
+    params: { type },
+    props: {
+      entries: erratas
+        .filter((e) => e.data.type === type)
+        .sort((a, b) => b.data.status_since - a.data.status_since),
+    },
+  }));
+}
+
+const { type } = Astro.params as { type: ErataType };
+const { entries } = Astro.props;
+
+const labels: Record<ErataType, string> = {
+  'posicion-revisada': 'Posición revisada',
+  'promesa-incumplida': 'Promesa incumplida',
+  'prediccion-fallida': 'Predicción fallida',
+  'consenso-disuelto': 'Consenso disuelto',
+};
+---
+<Layout title={labels[type]}>
+  <div class="mb-8 flex items-baseline gap-4">
+    <h1 class="text-lg font-bold" style="color: var(--color-ink);">{labels[type]}</h1>
+    <a href="/" class="text-xs hover:underline" style="color: var(--color-muted); text-decoration: none;">
+      Ver todas
+    </a>
+  </div>
+
+  <div class="overflow-x-auto">
+    <table class="w-full text-sm border-collapse">
+      <thead>
+        <tr class="text-xs uppercase tracking-wide" style="color: var(--color-muted); border-bottom: 1px solid var(--color-rule);">
+          <th class="text-left py-2 pr-4 font-normal">Desde</th>
+          <th class="text-left py-2 font-normal">Entrada</th>
+        </tr>
+      </thead>
+      <tbody>
+        {entries.map((entry: any) => (
+          <tr style="border-bottom: 1px solid var(--color-rule);">
+            <td class="py-3 pr-4 tabular-nums" style="color: var(--color-muted); vertical-align: top;">
+              {entry.data.status_since}
+            </td>
+            <td class="py-3" style="vertical-align: top;">
+              <a
+                href={`/errata/${entry.data.slug}`}
+                class="font-bold hover:underline"
+                style="color: var(--color-ink); text-decoration: none;"
+              >
+                {entry.data.title}
+              </a>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  {entries.length === 0 && (
+    <p class="text-sm mt-6" style="color: var(--color-muted);">
+      No hay entradas en esta categoría todavía.
+    </p>
+  )}
+
+  <p class="mt-6 text-xs" style="color: var(--color-muted);">
+    {entries.length} {entries.length === 1 ? 'entrada' : 'entradas'}.
+  </p>
+</Layout>

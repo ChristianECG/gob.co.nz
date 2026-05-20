@@ -1,0 +1,19 @@
+{
+  "name": "gob.co.nz",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build && pnpm pagefind",
+    "pagefind": "pagefind --site dist",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@fontsource/ia-writer-quattro": "^5.2.5",
+    "@tailwindcss/vite": "^4.3.0",
+    "astro": "^6.3.6",
+    "pagefind": "^1.5.2",
+    "tailwindcss": "^4.3.0"
+  }
+}

@@ -1,0 +1,152 @@
+---
+import '../styles/global.css';
+import { getCollection } from 'astro:content';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description = 'Correcciones documentadas a posiciones, promesas, predicciones y consensos de la industria tecnológica.' } = Astro.props;
+const pageTitle = title ? `${title} — Boletín` : 'Boletín — Correcciones documentadas a la industria tecnológica';
+
+const allEntries = await getCollection('erratas');
+const entryCount = allEntries.length;
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body class="min-h-screen flex flex-col" style="background-color: var(--color-paper);">
+
+    <!-- HEADER: banda clasificatoria -->
+    <header style="border-bottom: 1px solid var(--color-rule); box-shadow: 0 1px 4px rgba(0,0,0,0.08);">
+
+      <!-- banda superior: fondo oscuro, nombre invertido -->
+      <div style="background-color: var(--color-band-bg);">
+        <div class="max-w-4xl mx-auto px-6 py-2 flex items-center justify-between">
+          <a href="/" style="
+            font-size: 1.55rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--color-band-text);
+            text-decoration: none;
+            font-family: Georgia, 'Times New Roman', serif;
+          ">
+            Boletín
+          </a>
+          <span style="font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-band-muted);">
+            gob.co.nz
+          </span>
+        </div>
+      </div>
+
+      <!-- banda inferior: subtítulo + nav -->
+      <div style="background-color: var(--color-header-bg);">
+        <div class="max-w-4xl mx-auto px-6 py-2 flex items-center justify-between">
+          <span style="font-size: 0.68rem; color: var(--color-muted); letter-spacing: 0.03em;">
+            Correcciones documentadas a la industria tecnológica
+          </span>
+          <a
+            href="https://github.com/ChristianECG/gob.co.nz"
+            target="_blank"
+            rel="noopener noreferrer"
+            style="font-size: 0.65rem; color: var(--color-muted); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid var(--color-rule); padding: 0.2rem 0.55rem; display: inline-flex; align-items: center; gap: 0.4rem;"
+            class="hover:border-current hover:text-[var(--color-ink)] transition-colors"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+            Contribuir
+          </a>
+        </div>
+      </div>
+
+    </header>
+
+    <main class="max-w-4xl mx-auto px-6 py-10 flex-1 w-full">
+      <slot />
+    </main>
+
+    <!-- FOOTER: sello lateral -->
+    <footer style="
+      background-color: var(--color-footer-bg);
+      border-top: 1px solid var(--color-rule);
+      box-shadow: 0 -1px 4px rgba(0,0,0,0.05);
+      margin-top: 4rem;
+      font-size: 0.7rem;
+    ">
+      <div class="max-w-4xl mx-auto" style="display: flex; min-height: 8rem;">
+
+        <!-- sello: borde derecho + wordmark vertical -->
+        <div style="
+          border-right: 3px solid var(--color-rule);
+          width: 3.5rem;
+          flex-shrink: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 1.5rem 0;
+        ">
+          <a href="/" style="
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            transform: rotate(180deg);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--color-muted);
+            text-decoration: none;
+            font-family: Georgia, 'Times New Roman', serif;
+          ">
+            Boletín
+          </a>
+        </div>
+
+        <!-- contenido -->
+        <div style="flex: 1; padding: 1.4rem 1.5rem; display: flex; flex-direction: column; gap: 1rem;">
+
+          <!-- fila superior -->
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.75rem;">
+            <p style="color: var(--color-muted); line-height: 1.7; font-size: 0.7rem; max-width: 30rem;">
+              Correcciones documentadas a la industria tecnológica.<br />
+              Registro público · {entryCount} entradas · gob.co.nz
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 0.5rem; text-align: right; font-size: 0.68rem;">
+              <div>
+                <span style="color: var(--color-muted); text-transform: uppercase; letter-spacing: 0.07em; font-size: 0.6rem;">Autor</span><br />
+                <a
+                  href="http://christianecg.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="hover:underline"
+                  style="color: var(--color-ink); text-decoration: none; display: inline-flex; align-items: center; gap: 0.3rem; justify-content: flex-end;"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="8" r="4"/>
+                    <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+                  </svg>
+                  christianecg.com
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- disclaimer -->
+          <p style="color: var(--color-muted); font-size: 0.62rem; letter-spacing: 0.02em; border-top: 1px solid var(--color-rule); padding-top: 0.75rem;">
+            Las correcciones reflejan consenso documentado de la industria, no opinión editorial. Boletín no es un organismo oficial.
+          </p>
+
+        </div>
+      </div>
+    </footer>
+
+  </body>
+</html>

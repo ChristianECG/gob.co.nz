@@ -1,0 +1,30 @@
+---
+type ErataType = 'posicion-revisada' | 'promesa-incumplida' | 'prediccion-fallida' | 'consenso-disuelto';
+
+interface Props {
+  type: ErataType;
+}
+
+const { type } = Astro.props;
+
+const labels: Record<ErataType, string> = {
+  'posicion-revisada': 'Posición revisada',
+  'promesa-incumplida': 'Promesa incumplida',
+  'prediccion-fallida': 'Predicción fallida',
+  'consenso-disuelto': 'Consenso disuelto',
+};
+
+const colors: Record<ErataType, string> = {
+  'posicion-revisada': 'var(--color-posicion)',
+  'promesa-incumplida': 'var(--color-promesa)',
+  'prediccion-fallida': 'var(--color-prediccion)',
+  'consenso-disuelto': 'var(--color-consenso)',
+};
+---
+<a
+  href={`/tipo/${type}`}
+  class="inline-block text-xs px-2 py-0.5 font-bold uppercase tracking-wide"
+  style={`color: ${colors[type]}; border: 1px solid ${colors[type]}; text-decoration: none; white-space: nowrap;`}
+>
+  {labels[type]}
+</a>

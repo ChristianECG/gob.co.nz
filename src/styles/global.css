@@ -1,0 +1,64 @@
+@import "tailwindcss";
+@import "@fontsource/ia-writer-quattro/400.css";
+@import "@fontsource/ia-writer-quattro/400-italic.css";
+@import "@fontsource/ia-writer-quattro/700.css";
+
+@theme {
+  --font-sans: "iA Writer Quattro", ui-monospace, monospace;
+  --font-mono: "iA Writer Quattro", ui-monospace, monospace;
+
+  --color-paper: #f8f8f6;
+  --color-ink: #1a1a18;
+  --color-rule: #d4d4cc;
+  --color-muted: #6b6b68;
+  --color-header-bg: #f0f0ec;
+  --color-footer-bg: #ededea;
+  --color-accent-stripe: #2a2a26;
+  --color-band-bg: #2a2a26;
+  --color-band-text: #f0f0ec;
+  --color-band-muted: rgba(240, 240, 236, 0.45);
+
+  /* type badge colors — muted, not decorative */
+  --color-posicion: #3b5a8f;
+  --color-promesa: #7a3b3b;
+  --color-prediccion: #5a4a1a;
+  --color-consenso: #2d5a3b;
+}
+
+html {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    --color-paper: #1e1e1b;
+    --color-ink: #e8e8e4;
+    --color-rule: #383834;
+    --color-muted: #8a8a86;
+    --color-header-bg: #252522;
+    --color-footer-bg: #222220;
+    --color-accent-stripe: #d0d0c8;
+    --color-band-bg: #111110;
+    --color-band-text: #c8c8c2;
+    --color-band-muted: rgba(200, 200, 194, 0.4);
+
+    --color-posicion: #7a9fd4;
+    --color-promesa: #c47a7a;
+    --color-prediccion: #c4a84a;
+    --color-consenso: #6ab88a;
+  }
+}
+
+/* Pagefind UI overrides */
+.pagefind-ui {
+  --pagefind-ui-font: var(--font-sans);
+  --pagefind-ui-background: var(--color-paper);
+  --pagefind-ui-border: var(--color-rule);
+  --pagefind-ui-primary: var(--color-ink);
+  --pagefind-ui-text: var(--color-ink);
+  --pagefind-ui-border-radius: 0;
+}

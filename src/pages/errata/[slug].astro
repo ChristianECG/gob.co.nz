@@ -1,0 +1,115 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import TypeBadge from '../../components/TypeBadge.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const erratas = await getCollection('erratas');
+  return erratas.map((entry) => ({
+    params: { slug: entry.data.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const d = entry.data;
+---
+<Layout title={d.title} description={d.correction}>
+  <article data-pagefind-body>
+    <!-- Header row -->
+    <div class="flex items-start justify-between mb-8">
+      <TypeBadge type={d.type} />
+      <span class="text-xs font-mono" style="color: var(--color-muted);">
+        /{d.slug}
+      </span>
+    </div>
+
+    <!-- Title -->
+    <h1 class="text-xl font-bold mb-1 leading-tight" style="color: var(--color-ink);">
+      {d.title}
+    </h1>
+    <div class="mb-8" style="border-bottom: 1px solid var(--color-rule); padding-bottom: 1rem;"></div>
+
+    <!-- Fields -->
+    <dl class="space-y-8">
+      <div>
+        <dt class="text-xs uppercase tracking-wide mb-2" style="color: var(--color-muted);">
+          Declaración original
+        </dt>
+        <dd class="text-sm leading-relaxed pl-4" style="border-left: 2px solid var(--color-rule);">
+          <p class="italic mb-1">{d.declaration.trim()}</p>
+          <p class="text-xs" style="color: var(--color-muted);">— {d.origin}, {d.origin_year}</p>
+        </dd>
+      </div>
+
+      <div>
+        <dt class="text-xs uppercase tracking-wide mb-2" style="color: var(--color-muted);">
+          Corrección oficial
+        </dt>
+        <dd class="text-sm leading-relaxed">
+          {d.correction}
+        </dd>
+      </div>
+
+      <div>
+        <dt class="text-xs uppercase tracking-wide mb-2" style="color: var(--color-muted);">
+          Causa
+        </dt>
+        <dd class="text-sm leading-relaxed" style="color: var(--color-ink);">
+          {d.cause}
+        </dd>
+      </div>
+    </dl>
+
+    <!-- Divider -->
+    <div class="mt-10 mb-6" style="border-top: 1px solid var(--color-rule);"></div>
+
+    <!-- Metadata row -->
+    <div class="flex flex-wrap gap-x-8 gap-y-3 text-xs" style="color: var(--color-muted);">
+      <div>
+        <span class="uppercase tracking-wide">Vigente desde</span>
+        <span class="ml-2 font-bold" style="color: var(--color-ink);">{d.status_since}</span>
+      </div>
+      {d.tags.length > 0 && (
+        <div>
+          <span class="uppercase tracking-wide">Etiquetas</span>
+          <span class="ml-2">{d.tags.join(', ')}</span>
+        </div>
+      )}
+    </div>
+
+    {d.sources && d.sources.length > 0 && (
+      <div class="mt-4 text-xs" style="color: var(--color-muted);">
+        <span class="uppercase tracking-wide">Fuentes</span>
+        <ul class="mt-1 space-y-1">
+          {d.sources.map((src) => (
+            <li>
+              <a
+                href={src}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="hover:underline break-all"
+                style="color: var(--color-muted);"
+              >
+                {src}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    <!-- Optional body markdown -->
+    <div class="prose prose-sm mt-10 max-w-none text-sm leading-relaxed">
+      <Content />
+    </div>
+  </article>
+
+  <!-- Back link -->
+  <div class="mt-12 pt-6" style="border-top: 1px solid var(--color-rule);">
+    <a href="/" class="text-xs hover:underline" style="color: var(--color-muted); text-decoration: none;">
+      ← Volver al registro
+    </a>
+  </div>
+</Layout>
