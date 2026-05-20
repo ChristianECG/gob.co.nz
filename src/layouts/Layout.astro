@@ -6,9 +6,10 @@ interface Props {
   title?: string;
   description?: string;
   ogImage?: string;
+  ogType?: 'website' | 'article';
 }
 
-const { title, description = 'Correcciones documentadas a posiciones, promesas, predicciones y consensos de la industria tecnológica.', ogImage } = Astro.props;
+const { title, description = 'Correcciones documentadas a posiciones, promesas, predicciones y consensos de la industria tecnológica.', ogImage, ogType = 'website' } = Astro.props;
 const pageTitle = title ? `${title} — Boletín` : 'Boletín — Correcciones documentadas a la industria tecnológica';
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImageURL = ogImage ? new URL(ogImage, Astro.site) : new URL('/og.png', Astro.site);
@@ -28,7 +29,7 @@ const entryCount = allEntries.length;
     <link rel="alternate" type="application/rss+xml" title="Boletín RSS" href="/rss.xml" />
     <link rel="alternate" type="application/feed+json" title="Boletín JSON Feed" href="/feed.json" />
     <!-- Open Graph -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:locale" content="es" />
     <meta property="og:site_name" content="Boletín" />
     <meta property="og:title" content={pageTitle} />
