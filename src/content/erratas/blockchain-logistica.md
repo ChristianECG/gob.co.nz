@@ -22,5 +22,6 @@ tags:
   - logística
   - enterprise
 sources:
-  - "https://www.reuters.com/technology/maersk-ibm-discontinue-shipping-blockchain-platform-2022-11-29/"
+  - "https://www.theregister.com/2022/11/30/ibm_and_maersk_tradelens_shutdown/"
+  - "https://www.supplychaindive.com/news/Maersk-IBM-shut-down-TradeLens/637580/"
 ---
