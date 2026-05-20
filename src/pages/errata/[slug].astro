@@ -15,7 +15,7 @@ const { entry } = Astro.props;
 const { Content } = await render(entry);
 const d = entry.data;
 ---
-<Layout title={d.title} description={d.correction}>
+<Layout title={d.title} description={d.correction} ogImage={`/errata/${d.slug}-og.png`}>
   <article data-pagefind-body>
     <!-- Header row -->
     <div class="flex items-start justify-between mb-8">

@@ -1,0 +1,16 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="Página no encontrada" description="La entrada solicitada no existe en el registro.">
+  <div style="padding: 4rem 0;">
+    <div class="text-xs uppercase tracking-wide mb-4" style="color: var(--color-muted);">Error 404</div>
+    <h1 class="text-xl font-bold mb-4" style="color: var(--color-ink);">Entrada no encontrada</h1>
+    <div style="border-bottom: 1px solid var(--color-rule); margin-bottom: 2rem;"></div>
+    <p class="text-sm mb-6" style="color: var(--color-muted);">
+      La URL solicitada no corresponde a ninguna entrada del registro.
+    </p>
+    <a href="/" style="font-size: 0.75rem; color: var(--color-muted); text-decoration: none;" class="hover:underline">
+      ← Volver al registro
+    </a>
+  </div>
+</Layout>

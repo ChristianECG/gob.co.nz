@@ -5,10 +5,13 @@ import { getCollection } from 'astro:content';
 interface Props {
   title?: string;
   description?: string;
+  ogImage?: string;
 }
 
-const { title, description = 'Correcciones documentadas a posiciones, promesas, predicciones y consensos de la industria tecnológica.' } = Astro.props;
+const { title, description = 'Correcciones documentadas a posiciones, promesas, predicciones y consensos de la industria tecnológica.', ogImage } = Astro.props;
 const pageTitle = title ? `${title} — Boletín` : 'Boletín — Correcciones documentadas a la industria tecnológica';
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = ogImage ? new URL(ogImage, Astro.site) : new URL('/og.png', Astro.site);
 
 const allEntries = await getCollection('erratas');
 const entryCount = allEntries.length;
@@ -21,8 +24,24 @@ const entryCount = allEntries.length;
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalURL} />
     <link rel="alternate" type="application/rss+xml" title="Boletín RSS" href="/rss.xml" />
     <link rel="alternate" type="application/feed+json" title="Boletín JSON Feed" href="/feed.json" />
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es" />
+    <meta property="og:site_name" content="Boletín" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
   </head>
   <body class="min-h-screen flex flex-col" style="background-color: var(--color-paper);">
 

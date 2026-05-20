@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gob.co.nz/sitemap-index.xml
